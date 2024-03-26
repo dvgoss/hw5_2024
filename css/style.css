@@ -1,0 +1,164 @@
+/*animating logo with keyframes*/
+@keyframes logoAnimation {
+    0% {
+        width: 25px;
+        opacity: 0;
+    }
+    100% {
+        width: 475px;
+        opacity: 1;
+    }
+}
+#logo {
+    animation: logoAnimation 5s ease forwards; /* Animation lasts 5 seconds */
+}
+
+/*Edit the body element to use the Poppins font (using Google fonts) with serif as a backup.  It should also use the image “concrete_seamless.png” as a background-image with a backup color of #f1f1f1.*/
+
+body {
+    font-family: "Poppins", sans-serif;
+    background-image: url("/images/concrete_seamless.png");
+    background-color: #f1f1f1;
+}
+header{
+    display:flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+.nav-links{
+    display: flex;
+    flex-direction: column;
+}
+a {
+    color: #3366cc; /* setting the color for links */
+}
+  
+a:visited {
+    color: #3366cc; /* setting it so it has same color for visited links */
+}
+/*changing header elements that are direct children of card classs */
+.card > header {
+    background: #288088;
+    border: solid 2px #45ADAD;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+}
+/*changing the corners to make the cards curve prooperly and adding the initial card size*/
+.card {
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+    flex: 0 0 450px;
+    margin: 10px;
+}
+.pricing {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    flex-wrap: wrap; 
+}
+/*mobile view to keep width the same*/
+@media only screen and (max-width: 600px) {
+    header {
+        position: static;
+    }
+    .card {
+      flex: 1;
+      margin: 10px;
+    }
+    .pricing {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}
+/*styling the gallery*/
+.gallery img {
+    border: solid 10px #50C7C7;
+    margin: 10px;
+    width: 300px;
+}
+.gallery {
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: center;
+}
+@media only screen and (min-width: 900px) {
+    header {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .nav_links {
+        display:flex;
+        justify-content: flex-end;
+        flex-direction: row;
+        list-style-type: none;
+    }
+    /* Edit the css for the pricing and card classes to match our example. Part of achieving this is by using a flex-property to specify a “size” of 275px. Notice that the elements do not have the same height, but do have the same width. */
+    .card,
+    .pricing {
+        flex: 0 0 275px;
+    }
+}
+
+/* disabling the animation*/
+@media (prefers-reduced-motion: reduce) {
+    #logo {
+        animation: none;
+    }
+}
+
+/* changing the print display*/
+@media print {
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        background-image: none;
+    }
+
+    nav {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .nav_links {
+        display: flex;
+        list-style: none;
+    }
+
+    .pricing {
+        display: flex;
+        align-items: flex-end;
+    }
+
+    .card {
+        border: 2px solid #45ADDD;
+        flex-wrap: wrap;
+        flex-basis: 325px;
+    }
+
+    .gallery {
+        display: none;
+    }
+    /*adding thumbs up*/
+    .card::after {
+        content: "\1F44D";
+        display: inline-block;
+    }
+}
+@media print and (orientation: portrait) {
+    .gallery {
+        display: none;
+    }
+}
+
+/*fixed header*/
+body > header:first-child{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    z-index: 1000;
+}
